@@ -4,12 +4,12 @@
 1. Создать витрину customers
 2. Написать запрос для инкрементального обновления витрины
 ## 1. Создание модели dwh
-create-tables.sql
+[create-tables.sql](https://github.com/dsyntez/yde/blob/main/s-02/create-tables.sql)
 ## 2. Вставка данных в таблицы измерений dwh из источников
-insert-source-dim.sql
+[insert-source-dim.sql](https://github.com/dsyntez/yde/blob/main/s-02/insert-source-dim.sql)
 ## 3. Вставка данных в таблицу фактов dwh из источников
-insert-source-facts.sql
+[insert-source-facts.sql](https://github.com/dsyntez/yde/blob/main/s-02/insert-source-facts.sql)
 ## 4. Создание модели Витрины customers
-datamart-ddl.sql
+[datamart-ddl.sql](https://github.com/dsyntez/yde/blob/main/s-02/datamart-ddl.sql)
 ## 5. Инкрементальное обновление витрины
-increment-datamart.sql
+[increment-datamart.sql](https://github.com/dsyntez/yde/blob/main/s-02/increment-datamart.sql)
