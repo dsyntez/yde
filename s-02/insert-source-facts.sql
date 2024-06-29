@@ -114,7 +114,7 @@ FROM tmp_sources src;
 
 MERGE INTO dwh_v2.f_order f
 USING tmp_sources_fact t
-ON f.order_id = t.order_id and f.source_id = t.source_id
+ON f.product_id = t.product_id AND f.craftsman_id = t.craftsman_id AND f.customer_id = t.customer_id AND f.order_created_date = t.order_created_date
 WHEN MATCHED THEN
   UPDATE SET order_completion_date = t.order_completion_date, order_status = t.order_status, load_dttm = current_timestamp
 WHEN NOT MATCHED THEN
