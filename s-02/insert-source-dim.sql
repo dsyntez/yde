@@ -97,7 +97,7 @@ SELECT  t1.order_id,
 /* обновление существующих записей и добавление новых в dwh_v2.d_craftsmans */
 
 MERGE INTO dwh_v2.d_craftsman d
-USING tmp_sources t
+USING (select distinct craftsman_id, craftsman_name, craftsman_address, craftsman_birthday, craftsman_email, source_id from tmp_sources) t
 on d.craftsman_ext_id = t.craftsman_id and d.source_id = t.source_id
 WHEN MATCHED THEN
   UPDATE SET 
@@ -113,8 +113,10 @@ WHEN NOT MATCHED THEN
 /* обновление существующих записей и добавление новых в dwh_v2.d_products*/
 
 MERGE INTO dwh_v2.d_product d
-USING tmp_sources t
-on d.product_ext_id = t.product_id and d.source_id = t.source_id
+USING (select distinct product_id, product_name, product_description, product_type, product_price, source_id from tmp_sources) t
+on d.product_name = t.product_name and
+	d.product_description = t.product_description and
+	d.product_price = t.product_price
 WHEN MATCHED THEN
   UPDATE set
 	  product_name = t.product_name,
@@ -128,7 +130,7 @@ WHEN NOT MATCHED THEN
 /* обновление существующих записей и добавление новых в dwh_v2.d_customer*/
 
 MERGE INTO dwh_v2.d_customer d
-USING tmp_sources t
+USING (select distinct customer_id, customer_name, customer_address, customer_birthday, customer_email, source_id from tmp_sources) t
 on d.customer_ext_id = t.customer_id and d.source_id = t.source_id
 WHEN MATCHED THEN
   UPDATE set
